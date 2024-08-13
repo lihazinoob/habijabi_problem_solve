@@ -1,77 +1,31 @@
-#include<bits/stdc++.h>
+// Using Merge Sort Algorithm to sort an array
+
+#include <bits/stdc++.h>
 using namespace std;
-vector<int>arr;
-vector<int>ans;
-void mergethearray(int left,int mid,int right)
+class Solution
 {
-  int pointer1 = left;
-  int pointer2 = mid+1;
-  while(pointer1<=mid && pointer2<=right)
+  public: 
+  void mergeSort(vector<int> &vect,int left, int right)
   {
-    if(arr[pointer1] <= arr[pointer2])
+    
+    if(left>=right)
     {
-      ans.push_back(arr[pointer1]);
-      ++pointer1;
+      return;
     }
     else
     {
-      ans.push_back(arr[pointer2]);
-      ++pointer2;
+      int mid = (left + right) /2;
+      // cout<<left<<" "<<right<<" "<<mid<<endl;
+      mergeSort(vect,left,mid);
+      mergeSort(vect,mid+1,right);
     }
   }
-
-  while(pointer1<=mid)
-  {
-    ans.push_back(arr[pointer1]);
-    ++pointer1;
-  }
-  while(pointer2<=right)
-  {
-    ans.push_back(arr[pointer2]);
-    ++pointer2;
-  }
-
-}
-
-
-
-void dividethearray(int left,int right)
-{
-  if(left == right)
-  {
-    return;
-  }
-  //divide the whole array recursively
-  int mid = (left + right) /2;
-  dividethearray(left,mid);
-  dividethearray(mid + 1,right);
-  mergethearray(left,mid,right);
-  return;
-
-}
-void printthearray(int n)
-{
-  for(int i = 0;i<n;i++)
-  {
-    cout<<ans[i];
-  }
-}
+};
 
 int main()
 {
-  int n;
-  cin>>n;
-  for(int i = 0;i<n;i++)
-  {
-    int x;
-    cin>>x;
-    arr.push_back(x);
-  }
-  // for(int i = 0;i<n;i++)
-  // {
-  //   cout<<arr[i]<<" ";
-  // }
-  dividethearray(0,n-1);
-  printthearray(n);
+  vector<int> vect1 = {78, 454, 98, 1, 34, 5666, 56, 1, 56};
+  Solution s;
+  s.mergeSort(vect1,0,8);
   return 0;
 }
