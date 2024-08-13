@@ -22,7 +22,7 @@ public:
       merge(vect, left, mid, right);
     }
   }
-  
+
   void merge(vector<int> &arr, int left, int mid, int right)
   {
     int n1 = mid - left + 1;
@@ -33,7 +33,11 @@ public:
 
     // Copy data to temp vectors L[] and R[]
     for (int i = 0; i < n1; i++)
+    {
       L[i] = arr[left + i];
+      // cout<<L[i]<<" ";
+    }
+    // cout<<endl;
     for (int j = 0; j < n2; j++)
       R[j] = arr[mid + 1 + j];
 
